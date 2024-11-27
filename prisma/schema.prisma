@@ -8,7 +8,24 @@ generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
+datasource SoccerDB {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Player {
+  id Int @id @default(autoincrement())
+  name String
+  goalCount Int
+  birthDate DateTime
+  team_id Int 
+
+  team Team[]
+}
+
+model Team {
+  id Int @id @default(autoincrement())
+  country String
+
+  players Player[]
 }
